@@ -1,0 +1,45 @@
+{
+  "name": "bijli-wala-ayan",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 4001 -H 0.0.0.0",
+    "dev-watch": "nodemon --watch . --ext ts,tsx,js,jsx --exec \"next dev -p 3005\" --ignore node_modules --ignore .next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.8",
+    "axios": "^1.13.2",
+    "clsx": "^2.1.1",
+    "firebase": "^12.7.0",
+    "firebase-admin": "^13.6.1",
+    "framer-motion": "^12.25.0",
+    "lottie-react": "^2.4.1",
+    "lucide-react": "^0.562.0",
+    "next": "^16.1.6",
+    "qrcode": "^1.5.4",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.5.0",
+    "socket.io-client": "^4.8.3",
+    "use-places-autocomplete": "^4.0.1",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "archiver": "^7.0.1",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "nodemon": "^3.1.11",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5"
+  }
+}

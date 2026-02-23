@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   FONT OPTIMIZATION - Fix Font Loading Issues
+   ============================================ */
+
+/* System font stack as fallback */
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-display: 'Poppins', var(--font-sans);
+  
+  /* Prevent layout shift during font loading */
+  font-synthesis: none;
+}
+
+/* Before Google Fonts load, use system fonts */
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  background-color: #F9FAFB;
+  color: #111827;
+  /* Font size adjustment prevents CLS (Cumulative Layout Shift) */
+  font-size-adjust: 0.5;
+  
+  /* Smooth font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Better font kerning */
+  font-kerning: auto;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+/* Optimized heading styles to avoid stretching */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+}
+
+/* Prevent text selection flicker during font swap */
+body.font-loading {
+  opacity: 0.99;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111827;
+    color: #F3F4F6;
+  }
+}
+
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Fix font rendering consistency */
+input, textarea, button, select {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent text from jumping when scrollbar appears */
+html {
+  overflow-y: scroll;
+}
+
+/* Smooth font loading transition */
+@font-feature-values "Google Fonts" {
+  @supports (font-variation-settings: normal) {
+    @styleset {
+      nice-fonts: 1;
+    }
+  }
+}
+
+/* Fix CLS for buttons and interactive elements */
+button, a, [role="button"] {
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+}
+
+/* Optimize line-height to prevent shifts */
+body {
+  line-height: 1.5;
+}
+
+h1 { line-height: 1.2; }
+h2 { line-height: 1.3; }
+h3 { line-height: 1.4; }
+p { line-height: 1.6; }
+
+/* ============================================
+   MOTION + CTA ENHANCEMENTS
+   ============================================ */
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes shine-sweep {
+  0% { transform: translateX(-120%); opacity: 0; }
+  15% { opacity: 1; }
+  35% { transform: translateX(120%); opacity: 0; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+@keyframes airflow {
+  0% { transform: translateX(-30%); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateX(130%); opacity: 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.btn-attractive {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  box-shadow: 0 12px 30px rgba(255, 196, 46, 0.35);
+}
+
+.btn-attractive::after {
+  content: "";
+  position: absolute;
+  inset: -40% -120%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-120%);
+  animation: shine-sweep 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.btn-attractive:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(255, 196, 46, 0.45);
+}
+
+.btn-attractive:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.card-pop {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card-pop:hover {
+  transform: translateY(-4px);
+}
+
+.float-soft {
+  animation: float-soft 3.6s ease-in-out infinite;
+}
+
+.icon-pulse {
+  animation: pulse-soft 2.8s ease-in-out infinite;
+}
+
+.icon-spin-slow {
+  animation: spin-slow 9s linear infinite;
+}
+
+.ac-airflow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ac-airflow span {
+  position: absolute;
+  left: 10%;
+  height: 2px;
+  width: 45%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.7), rgba(59, 130, 246, 0));
+  filter: blur(0.2px);
+  animation: airflow 2.2s linear infinite;
+}
+
+.ac-airflow span:nth-child(1) { top: 28%; animation-delay: 0s; }
+.ac-airflow span:nth-child(2) { top: 48%; animation-delay: 0.5s; }
+.ac-airflow span:nth-child(3) { top: 68%; animation-delay: 1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-attractive::after,
+  .float-soft,
+  .icon-pulse,
+  .icon-spin-slow,
+  .ac-airflow span {
+    animation: none !important;
+  }
+}

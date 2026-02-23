@@ -1,0 +1,165 @@
+/* Booking Summary Page - Font Optimization */
+
+:root {
+  /* Explicit sizing to prevent stretching */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  --line-height-xs: 1rem;
+  --line-height-sm: 1.25rem;
+  --line-height-base: 1.5rem;
+  --line-height-lg: 1.75rem;
+  --line-height-xl: 1.75rem;
+  --line-height-2xl: 2rem;
+  --line-height-3xl: 2.25rem;
+  --line-height-4xl: 2.5rem;
+}
+
+/* Prevent font stretching during load */
+.booking-summary {
+  font-display: swap;
+  font-feature-settings: 'kern' 1;
+}
+
+/* Service title - prevent stretching */
+.service-title {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  min-height: 1.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Price - prevent horizontal shifting */
+.service-price {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-xl);
+  min-height: 1.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums; /* Prevents width shifting */
+}
+
+/* Section headers */
+.section-header {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  min-height: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Description text */
+.section-description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: #6B7280;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  height: 2.5rem; /* Fixed height */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+textarea {
+  height: auto;
+  min-height: 6rem;
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Badge/label text */
+.badge-text {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Ensure consistent rendering during font swap */
+* {
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent layout shift on links */
+a {
+  text-decoration-skip-ink: auto;
+}
+
+/* Optimize number rendering */
+.amount,
+.price,
+.count,
+[data-number] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Fix CLS for interactive elements */
+.btn-group button,
+.qty-control button {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+/* Prevent scrollbar-related layout shift */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 640px) {
+  :root {
+    --font-size-base: 0.9375rem;
+  }
+
+  .service-title {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+
+  .section-header {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+}
+
+/* Smooth font loading transition */
+@keyframes fontLoad {
+  from {
+    opacity: 0.95;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+html.fonts-loaded body {
+  animation: fontLoad 0.2s ease-out;
+}
